@@ -118,14 +118,6 @@ class GameController {
 		array_push(self::$finishingOrder, $info);
 	}
 
-	public function __construct() {
-		
-	}
-
-	public function start() {
-
-	}
-
 	public static function getArrived() {
 		return self::$finishingOrder;
 	}
@@ -192,7 +184,9 @@ $finishingOrder = json_encode($finishingOrder);
 
 	<script type="text/javascript">
 		function main() {
-		    var gc = GameController.init(JSON.parse('<?=$finishingOrder?>'));
+			var finishingOrder = JSON.parse('<?=$finishingOrder?>');
+			var totalSpace = JSON.parse('<?=GameController::TOTAL_SPACE?>');
+		    var gc = GameController.init(finishingOrder, totalSpace);
 		}
 	</script>
 	<script src="./assets/js/script.js"></script>

@@ -1,11 +1,17 @@
-    var GameController = (function() {
+var GameController = (function() {
     "use strict";
     var instance;
-    var participants;
+    var participants, totalSpace;
     return {
-        init: function(r) {
+        getTotalSpace: function(){
+            if (instance) {
+                return totalSpace;
+            }
+        },
+        init: function(r, s) {
             if (!instance) {
                 participants = r;
+                totalSpace = s;
                 var maxMoves = 0;
                 var cars = [];
 
@@ -39,6 +45,11 @@
     };
 })();
 
+function toScreenSize(phpVal, phpTot) {
+    var jsTot = document.getElementById('container').clientWidth;
+    return phpVal * jsTot / phpTot;
+}
+
 var Car = (function() {
 
     function Car(_nick, _color, _trend) {
@@ -51,7 +62,7 @@ var Car = (function() {
 
         this.move = function(i) { // pubblica
             if (trend[i]) {
-                car.style.left = car.offsetLeft + trend[i] + "px"; // ** trend[i] in percentuale rispetto alla corsa totale
+                car.style.left = car.offsetLeft + toScreenSize(trend[i], GameController.getTotalSpace()) + "px"; // ** trend[i] in percentuale rispetto alla corsa totale
             }
         };
 
