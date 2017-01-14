@@ -1,0 +1,32 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#container,
+#container > div.car {
+    -webkit-box-sizing: border-box;		/* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;		/* Firefox, Gecko */
+    box-sizing: border-box;				/* Opera/IE 8+ */
+}
+
+#container {
+    position: relative;
+    width: 98vw;
+    height: 98vh;
+    left: 1vw;
+    top: 1vh;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    overflow: hidden;
+}
+
+#container > div.car {
+    position: absolute;
+    background-color: blue;
+    border-top: 5px solid white;
+    border-bottom: 5px solid white;
+    width: 100px;
+    height: 100px;
+}
